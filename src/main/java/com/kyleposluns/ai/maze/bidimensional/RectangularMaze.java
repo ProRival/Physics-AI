@@ -2,9 +2,7 @@ package com.kyleposluns.ai.maze.bidimensional;
 
 import com.kyleposluns.ai.maze.Maze;
 import com.kyleposluns.ai.maze.MazeCell;
-import com.kyleposluns.ai.maze.MazePlan2d;
 import com.kyleposluns.ai.maze.MazeType;
-import com.kyleposluns.ai.maze.MazeType2d;
 import java.awt.Graphics;
 
 public class RectangularMaze implements Maze, MazePlan2d {

@@ -1,7 +1,7 @@
-package com.kyleposluns.ai.maze;
+package com.kyleposluns.ai.maze.bidimensional;
 
-import com.kyleposluns.ai.maze.bidimensional.RectangularMaze;
-import com.kyleposluns.ai.maze.bidimensional.SquareMaze;
+import com.kyleposluns.ai.maze.MazePlan;
+import com.kyleposluns.ai.maze.MazeType;
 
 public enum MazeType2d implements MazeType {
 
