@@ -5,22 +5,27 @@ import com.kyleposluns.ai.maze.MazeCell;
 import com.kyleposluns.ai.maze.MazeType;
 import com.kyleposluns.ai.maze.bidimensional.CartesianMazeModel;
 import com.kyleposluns.ai.maze.bidimensional.MazeType2D;
+import com.kyleposluns.ai.util.Location;
 
-public class RectangularMaze implements Maze, CartesianMazeModel {
-
-	private boolean isGenerated;
-
-	private int width, height;
+public class RectangularMaze extends CartesianMazeModel {
 
 	public RectangularMaze(int width, int height) {
-		this.width = width;
-		this.height = height;
-		this.isGenerated = false;
+		super(width, height);
+	}
+
+	@Override
+	public void init() {
+		for (int x = 0; x < maze.length; x++) {
+			for (int y = 0; y < maze[x].length; y++) {
+				maze[x][y] = new CartesianCell(new Location(x, y));
+			}
+		}
 	}
 
 	@Override
 	public void generate() {
 		if (isGenerated) return;
+
 	}
 
 
