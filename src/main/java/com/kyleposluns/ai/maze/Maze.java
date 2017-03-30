@@ -9,9 +9,5 @@ public interface Maze {
 
 	}
 
-	default void deinit() {
-
-	}
-
 	MazeType getType();
 }
