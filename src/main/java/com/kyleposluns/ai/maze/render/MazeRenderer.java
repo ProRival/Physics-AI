@@ -1,9 +1,9 @@
 package com.kyleposluns.ai.maze.render;
 
 import com.kyleposluns.ai.maze.MazeModel;
-import java.awt.Graphics;
+import javax.swing.JComponent;
 
-public abstract class MazeRenderer<T extends MazeModel> {
+public abstract class MazeRenderer<T extends MazeModel> extends JComponent{
 
 	protected final T model;
 
@@ -14,7 +14,5 @@ public abstract class MazeRenderer<T extends MazeModel> {
 		this.width = width;
 		this.height = height;
 	}
-
-	public abstract  void paint(Graphics g);
 
 }
