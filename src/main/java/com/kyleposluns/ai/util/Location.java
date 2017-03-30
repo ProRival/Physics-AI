@@ -13,4 +13,14 @@ public class Location {
 		this(0, 0);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) return true;
+		if (!(o instanceof Location)) return false;
+		if (!(o.getClass().equals(this.getClass()))) return false;
+
+		Location loc = (Location) o;
+		return loc.x == this.x && loc.y == this.y;
+	}
+
 }

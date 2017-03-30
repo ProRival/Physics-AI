@@ -12,7 +12,15 @@ public class CartesianCell implements MazeCell {
 
 	public CartesianCell(Location location) {
 		this.location = location;
-		this.walls = new boolean[4];
+		this.walls = new boolean[]{true, true, true, true};
+	}
+
+	public Location getLocation() {
+		return this.location;
+	}
+
+	public void openWall(CardinalDirection direction) {
+		this.walls[getDir(direction)] = false;
 	}
 
 	//linear search shouldn't take too long

@@ -1,5 +1,9 @@
 package com.kyleposluns.ai.util;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by Kyle on 3/29/17.
  */
@@ -27,5 +31,12 @@ public enum CardinalDirection {
 	public int getDeltaY() {
 		return this.deltaY;
 	}
+
+	public static List<CardinalDirection> getRandomDirections() {
+		List<CardinalDirection> dirs = Arrays.asList(CardinalDirection.values());
+		Collections.shuffle(dirs);
+		return dirs;
+	}
+
 
 }

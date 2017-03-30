@@ -2,6 +2,7 @@ package com.kyleposluns.ai.maze.bidimensional;
 
 import com.kyleposluns.ai.maze.Maze;
 import com.kyleposluns.ai.maze.MazeCell;
+import com.kyleposluns.ai.maze.bidimensional.impl.CartesianCell;
 import com.kyleposluns.ai.util.Location;
 
 public abstract class CartesianMazeModel implements MazeModel2D, Maze {
@@ -10,7 +11,7 @@ public abstract class CartesianMazeModel implements MazeModel2D, Maze {
 
 	protected boolean isGenerated;
 
-	protected MazeCell[][] maze;
+	protected CartesianCell[][] maze;
 
 	protected Location start, goal;
 
@@ -20,7 +21,7 @@ public abstract class CartesianMazeModel implements MazeModel2D, Maze {
 		this.width = width;
 		this.height = height;
 		this.isGenerated = false;
-		this.maze = new MazeCell[width][height];
+		this.maze = new CartesianCell[width][height];
 		this.init();
 	}
 
