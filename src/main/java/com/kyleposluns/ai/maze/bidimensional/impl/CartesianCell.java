@@ -20,21 +20,11 @@ public class CartesianCell implements MazeCell {
 	}
 
 	public void openWall(CardinalDirection direction) {
-		this.walls[getDir(direction)] = false;
-	}
-
-	//linear search shouldn't take too long
-	private int getDir(CardinalDirection dir) {
-		for (int i = 0; i < CardinalDirection.values().length; i++) {
-			if (CardinalDirection.values()[i] == dir) {
-				return i;
-			}
-		}
-		return -1;
+		this.walls[direction.ordinal()] = false;
 	}
 
 	public boolean hasWall(CardinalDirection direction) {
-		return walls[getDir(direction)];
+		return walls[direction.ordinal()];
 	}
 
 
