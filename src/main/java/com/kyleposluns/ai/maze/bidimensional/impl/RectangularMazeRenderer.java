@@ -8,13 +8,17 @@ import java.awt.Graphics2D;
 
 public class RectangularMazeRenderer extends MazeRenderer<RectangularMaze> {
 
-	private final int CELL_WIDTH, CELL_HEIGHT;
+	private int CELL_WIDTH, CELL_HEIGHT;
 
-	public RectangularMazeRenderer(RectangularMaze model) {
-		super(model);
-		this.CELL_WIDTH = 500 / model.getRows();
-		this.CELL_HEIGHT = 500 / model.getColumns();
+	public RectangularMazeRenderer(RectangularMaze model, int width, int height) {
+		super(model, width, height);
+		init();
+		//this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+	}
 
+	private final void init() {
+		this.CELL_WIDTH = (((int) (this.getPreferredSize().getWidth())) / model.getRows());
+		this.CELL_HEIGHT = (((int) (this.getPreferredSize().getHeight())) / model.getColumns());
 	}
 
 	@Override
@@ -27,6 +31,7 @@ public class RectangularMazeRenderer extends MazeRenderer<RectangularMaze> {
 
 		for (int x = 0; x < model.getRows(); x++) {
 			for (int y = 0; y < model.getColumns(); y++) {
+
 				g.setColor(Color.BLACK);
 
 				if (model.getCell(x, y).hasWall(CardinalDirection.NORTH)) {
@@ -34,10 +39,17 @@ public class RectangularMazeRenderer extends MazeRenderer<RectangularMaze> {
 				}
 
 				if (model.getCell(x, y).hasWall(CardinalDirection.WEST)) {
-					g.drawLine(x * CELL_WIDTH, y * CELL_HEIGHT, x * CELL_WIDTH, y * CELL_HEIGHT);
+					g.drawLine(x * CELL_WIDTH, y * CELL_HEIGHT, x * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 				}
 			}
 		}
 
+	}
+
+	private void drawCell(int x, int y) {
+		CartesianCell cell = model.getCell(x, y);
+
+		System.out.println("North: " + cell.hasWall(CardinalDirection.NORTH));
+		System.out.println("West: " + cell.hasWall(CardinalDirection.WEST));
 	}
 }
