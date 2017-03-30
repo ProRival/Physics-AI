@@ -1,6 +1,5 @@
 package com.kyleposluns.ai.maze.bidimensional.impl;
 
-import com.kyleposluns.ai.maze.MazeCell;
 import com.kyleposluns.ai.maze.MazeType;
 import com.kyleposluns.ai.maze.bidimensional.CartesianMazeModel;
 import com.kyleposluns.ai.maze.bidimensional.MazeType2D;
@@ -57,7 +56,7 @@ public class RectangularMaze extends CartesianMazeModel {
 	@Override
 	public void generate() {
 		if (isGenerated) return;
-		generate(0, 0);
+		generate(1, 1);
 	}
 
 
@@ -68,7 +67,7 @@ public class RectangularMaze extends CartesianMazeModel {
 	}
 
 	@Override
-	public MazeCell getCell(int x, int y) {
+	public CartesianCell getCell(int x, int y) {
 		return maze[x][y];
 	}
 

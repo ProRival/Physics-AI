@@ -26,9 +26,17 @@ public abstract class CartesianMazeModel implements MazeModel2D, Maze {
 	}
 
 	public CartesianMazeModel(int width, int height) {
-		this(new Location(), new Location(width - 1, height - 1), width, height);
+		this(new Location(), new Location(width - 2, height - 2), width, height);
 	}
 
-	public abstract MazeCell getCell(int x, int y);
+	public int getRows() {
+		return this.width;
+	}
+
+	public int getColumns() {
+		return this.height;
+	}
+
+	public abstract CartesianCell getCell(int x, int y);
 
 }

@@ -9,13 +9,13 @@ import java.util.List;
  */
 public enum CardinalDirection {
 
-	NORTH(0, 0),
+	NORTH(0, -1),
 
-	EAST(0, 0),
+	EAST(1, 0),
 
-	SOUTH(0, 0),
+	SOUTH(0, 1),
 
-	WEST(0, 0);
+	WEST(-1, 0);
 
 	private int deltaX, deltaY;
 
