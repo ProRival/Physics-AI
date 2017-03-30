@@ -1,14 +1,10 @@
 package com.kyleposluns.ai.maze;
 
-import java.awt.Graphics;
-
 /**
  * Created by Kyle on 3/28/17.
  */
-public interface MazePlan {
+public interface MazeModel {
 
 	void generate();
-
-	void paint(Graphics graphics);
 
 }

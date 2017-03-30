@@ -1,20 +1,22 @@
 package com.kyleposluns.ai.maze.bidimensional;
 
-import com.kyleposluns.ai.maze.MazePlan;
+import com.kyleposluns.ai.maze.MazeModel;
 import com.kyleposluns.ai.maze.MazeType;
+import com.kyleposluns.ai.maze.bidimensional.impl.RectangularMaze;
+import com.kyleposluns.ai.maze.bidimensional.impl.SquareMaze;
 
-public enum MazeType2d implements MazeType {
+public enum MazeType2D implements MazeType {
 
 	RECTANGULAR(RectangularMaze.class), SQUARE(SquareMaze.class);
 
-	private Class<? extends MazePlan> clazz;
+	private Class<? extends MazeModel> clazz;
 
-	MazeType2d(Class<? extends MazePlan> clazz) {
+	MazeType2D(Class<? extends MazeModel> clazz) {
 		this.clazz = clazz;
 	}
 
 	@Override
-	public Class<? extends MazePlan> getPlanClass() {
+	public Class<? extends MazeModel> getPlanClass() {
 		return this.clazz;
 	}
 }
