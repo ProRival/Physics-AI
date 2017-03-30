@@ -6,13 +6,9 @@ import javax.swing.JComponent;
 public abstract class MazeRenderer<T extends MazeModel> extends JComponent{
 
 	protected final T model;
-
-	protected final int width, height;
-
-	public MazeRenderer(T model, int width, int height) {
+	
+	public MazeRenderer(T model) {
 		this.model = model;
-		this.width = width;
-		this.height = height;
 	}
 
 }
