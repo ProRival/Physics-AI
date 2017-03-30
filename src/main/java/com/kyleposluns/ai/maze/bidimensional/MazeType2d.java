@@ -16,7 +16,7 @@ public enum MazeType2D implements MazeType {
 	}
 
 	@Override
-	public Class<? extends MazeModel> getPlanClass() {
+	public Class<? extends MazeModel> getModelClass() {
 		return this.clazz;
 	}
 }

@@ -5,6 +5,6 @@ package com.kyleposluns.ai.maze;
  */
 public interface MazeType {
 
-	Class<? extends MazePlan> getPlanClass();
+	Class<? extends MazeModel> getModelClass();
 
 }
