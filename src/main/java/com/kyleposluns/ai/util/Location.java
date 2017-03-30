@@ -9,4 +9,8 @@ public class Location {
 		this.y = y;
 	}
 
+	public Location() {
+		this(0, 0);
+	}
+
 }

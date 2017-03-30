@@ -1,6 +1,5 @@
 package com.kyleposluns.ai.maze.bidimensional.impl;
 
-import com.kyleposluns.ai.maze.Maze;
 import com.kyleposluns.ai.maze.MazeCell;
 import com.kyleposluns.ai.maze.MazeType;
 import com.kyleposluns.ai.maze.bidimensional.CartesianMazeModel;
@@ -11,6 +10,10 @@ public class RectangularMaze extends CartesianMazeModel {
 
 	public RectangularMaze(int width, int height) {
 		super(width, height);
+	}
+
+	public RectangularMaze(Location start, Location goal, int width, int height) {
+		super(start, goal, width, height);
 	}
 
 	@Override
