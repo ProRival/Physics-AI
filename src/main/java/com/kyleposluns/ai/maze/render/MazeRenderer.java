@@ -5,10 +5,14 @@ import java.awt.Graphics;
 
 public abstract class MazeRenderer<T extends MazeModel> {
 
-	protected T model;
+	protected final T model;
 
-	public MazeRenderer(T model) {
+	protected final int width, height;
+
+	public MazeRenderer(T model, int width, int height) {
 		this.model = model;
+		this.width = width;
+		this.height = height;
 	}
 
 	public abstract  void paint(Graphics g);
