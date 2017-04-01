@@ -26,39 +26,37 @@ public class RectangularMaze extends CartesianMazeModel {
 		}
 	}
 
+	private void carve(CartesianCell c1, CardinalDirection dir) {
+		CartesianCell relative = getRelative(c1, dir);
+		c1.openWall(dir);
+
+		relative.openWall(dir.getOpposite());
+	}
+
+	private boolean isAcceptable(Location loc) {
+		return loc.x < width && loc.x >= 0 && loc.y < height && loc.y >= 0;
+	}
+
 	private void generate(int x, int y) {
+		CartesianCell cell = getCell(x, y);
+		cell.setVisited(true);
 		List<CardinalDirection> dirs = CardinalDirection.getRandomDirections();
-
 		for (int i = 0; i < dirs.size(); i++) {
-			CardinalDirection direction = dirs.get(i);
-
-			Location relative = new Location(x + direction.getDeltaX(), y + direction.getDeltaY());
-			Location nextRelative = new Location(x + (direction.getDeltaX() * 2), y + (direction.getDeltaY() * 2));
-
-			if (nextRelative.x >= width || nextRelative.y >= height) continue;
-			if (nextRelative.x < 0 || nextRelative.y < 0) continue;
-			if (maze[nextRelative.x][nextRelative.y] == null) continue;
-
-			if (maze[nextRelative.x][nextRelative.y].getLocation().equals(goal)) {
-				maze[relative.x][relative.y].openWall(direction);
-				continue;
-			}
-
-			if (maze[nextRelative.x][nextRelative.y].hasWall(direction)) {
-				maze[relative.x][relative.y].openWall(direction);
-				maze[nextRelative.x][nextRelative.y].openWall(direction);
-				generate(nextRelative.x, nextRelative.y);
-			}
-
+			CardinalDirection ranDir = dirs.get(i);
+			if (getRelative(cell, ranDir) == null) continue;
+			if (getRelative(cell, ranDir).isVisited()) continue;
+			carve(cell, ranDir);
+			generate(cell.getLocation().x + ranDir.getDeltaX(), cell.getLocation().y + ranDir.getDeltaY());
 		}
 	}
+
+
 
 	@Override
 	public void generate() {
 		if (isGenerated) return;
 		generate(1, 1);
 	}
-
 
 
 	@Override
