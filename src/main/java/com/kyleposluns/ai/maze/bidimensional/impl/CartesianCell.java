@@ -10,9 +10,12 @@ public class CartesianCell implements MazeCell {
 
 	private Location location;
 
+	private boolean visited;
+
 	public CartesianCell(Location location) {
 		this.location = location;
 		this.walls = new boolean[]{true, true, true, true};
+		this.visited = false;
 	}
 
 	public Location getLocation() {
@@ -28,4 +31,13 @@ public class CartesianCell implements MazeCell {
 	}
 
 
+	@Override
+	public boolean isVisited() {
+		return this.visited;
+	}
+
+	@Override
+	public void setVisited(boolean visited) {
+		this.visited = visited;
+	}
 }
