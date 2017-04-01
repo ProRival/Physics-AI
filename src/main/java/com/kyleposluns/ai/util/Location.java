@@ -23,4 +23,9 @@ public class Location {
 		return loc.x == this.x && loc.y == this.y;
 	}
 
+	@Override
+	public String toString() {
+		return "(" + x + "," + y + ")";
+	}
+
 }
