@@ -5,12 +5,15 @@ import com.kyleposluns.ai.maze.bidimensional.CartesianMazeModel;
 import com.kyleposluns.ai.maze.bidimensional.MazeType2D;
 import com.kyleposluns.ai.util.CardinalDirection;
 import com.kyleposluns.ai.util.Location;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RectangularMaze extends CartesianMazeModel {
 
 	public RectangularMaze(int width, int height) {
-		super(width, height);
+		this(new Location(1, 1), new Location(width - 1, height - 1), width, height);
 	}
 
 	public RectangularMaze(Location start, Location goal, int width, int height) {
@@ -28,8 +31,8 @@ public class RectangularMaze extends CartesianMazeModel {
 
 	private void carve(CartesianCell c1, CardinalDirection dir) {
 		CartesianCell relative = getRelative(c1, dir);
+		if (relative == null) return;
 		c1.openWall(dir);
-
 		relative.openWall(dir.getOpposite());
 	}
 
@@ -50,12 +53,36 @@ public class RectangularMaze extends CartesianMazeModel {
 		}
 	}
 
-
+	private void populateFrontier(List<CartesianCell> frontier, CartesianCell origin) {
+		for (CardinalDirection dir : CardinalDirection.values()) {
+			if (getRelative(origin, dir) == null) continue;
+			if (getRelative(origin, dir).isVisited()) continue;
+			frontier.add(getRelative(origin, dir));
+		}
+	}
 
 	@Override
 	public void generate() {
 		if (isGenerated) return;
-		generate(1, 1);
+		List<CartesianCell> frontier = new ArrayList<>();
+		CartesianCell startCell = getCell((int) (Math.random() * width), (int) (Math.random() * height));
+		startCell.setVisited(true);
+		populateFrontier(frontier, startCell);
+		while (!frontier.isEmpty()) {
+			try {
+				CartesianCell cell = frontier.remove((int) (Math.random() * frontier.size()));
+				CardinalDirection dir = CardinalDirection.getRandomDirections().get(0);
+				CartesianCell neighbor = getRelative(cell, dir);
+				cell.setVisited(true);
+
+				carve(cell, dir);
+				neighbor.setVisited(true);
+				populateFrontier(frontier, neighbor);
+			} catch (Exception e) {
+				continue;
+			}
+		}
+
 	}
 
 
