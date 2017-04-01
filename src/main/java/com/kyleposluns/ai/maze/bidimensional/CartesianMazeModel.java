@@ -1,13 +1,10 @@
 package com.kyleposluns.ai.maze.bidimensional;
 
-import com.kyleposluns.ai.maze.Maze;
-import com.kyleposluns.ai.maze.MazeCell;
 import com.kyleposluns.ai.maze.bidimensional.impl.CartesianCell;
 import com.kyleposluns.ai.util.CardinalDirection;
-import com.kyleposluns.ai.util.Direction;
 import com.kyleposluns.ai.util.Location;
 
-public abstract class CartesianMazeModel implements MazeModel2D, Maze {
+public abstract class CartesianMazeModel implements MazeModel2D {
 
 	protected int width, height;
 
@@ -24,7 +21,6 @@ public abstract class CartesianMazeModel implements MazeModel2D, Maze {
 		this.height = height;
 		this.isGenerated = false;
 		this.maze = new CartesianCell[width][height];
-		this.init();
 	}
 
 	public CartesianMazeModel(int width, int height) {
