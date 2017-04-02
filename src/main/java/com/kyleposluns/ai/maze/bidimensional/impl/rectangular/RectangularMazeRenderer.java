@@ -17,7 +17,7 @@ public class RectangularMazeRenderer extends MazeRenderer<RectangularMazeModel> 
 	public RectangularMazeRenderer(RectangularMazeModel model, int width, int height) {
 		super(model, width, height);
 		this.setSize(new Dimension(width, height));
-		this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+		//this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		init();
 	}
 
@@ -36,6 +36,10 @@ public class RectangularMazeRenderer extends MazeRenderer<RectangularMazeModel> 
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.BLACK);
 
+		g.drawLine(0, 0, model.getRows() * CELL_WIDTH, 0);
+		g.drawLine(0, model.getColumns() * CELL_HEIGHT, model.getRows() * CELL_WIDTH, model.getColumns() * CELL_HEIGHT);
+		g.drawLine(0, 0, 0, model.getColumns() * CELL_HEIGHT);
+		g.drawLine(model.getRows() * CELL_WIDTH, 0, model.getRows() * CELL_WIDTH, model.getColumns() * CELL_HEIGHT);
 
 		for (int x = 0; x < model.getRows(); x++) {
 			for (int y = 0; y < model.getColumns(); y++) {

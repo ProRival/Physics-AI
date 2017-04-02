@@ -32,10 +32,10 @@ public class PhysicsAI {
 		});
 
 		f.getContentPane().setLayout(new BorderLayout());
-		f.setVisible(true);
 
 		f.getContentPane().add(renderer, BorderLayout.CENTER);
 		f.setResizable(true);
+		f.setVisible(true);
 		f.pack();
 
 	}
