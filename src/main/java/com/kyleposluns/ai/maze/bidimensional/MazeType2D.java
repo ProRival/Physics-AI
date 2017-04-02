@@ -4,9 +4,6 @@ import com.kyleposluns.ai.maze.Maze;
 import com.kyleposluns.ai.maze.MazeType;
 import com.kyleposluns.ai.maze.bidimensional.impl.rectangular.RectangularMaze;
 
-/**
- * Created by Kyle on 4/2/17.
- */
 public enum MazeType2D implements MazeType {
 
 	RECTANGULAR(RectangularMaze.class);

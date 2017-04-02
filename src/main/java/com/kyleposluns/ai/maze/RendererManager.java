@@ -1,7 +1,5 @@
 package com.kyleposluns.ai.maze;
 
-import com.kyleposluns.ai.maze.MazeRenderer;
-import com.kyleposluns.ai.maze.MazeType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;

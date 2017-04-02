@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class RectangularMazeModel extends CartesianMazeModel {
 
 	private List<CartesianCell> frontier;

@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Kyle on 3/29/17.
- */
 public enum Direction {
 
 	NORTH(0, 1),

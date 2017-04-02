@@ -1,7 +1,5 @@
-package com.kyleposluns.ai.maze.render;
+package com.kyleposluns.ai.maze;
 
-import com.kyleposluns.ai.maze.MazeModel;
-import com.kyleposluns.ai.maze.MazeType;
 import java.awt.Dimension;
 import javax.swing.JComponent;
 
