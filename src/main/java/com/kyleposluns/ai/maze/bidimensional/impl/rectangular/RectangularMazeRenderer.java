@@ -1,7 +1,7 @@
 package com.kyleposluns.ai.maze.bidimensional.impl.rectangular;
 
 import com.kyleposluns.ai.maze.render.MazeRenderer;
-import com.kyleposluns.ai.util.CardinalDirection;
+import com.kyleposluns.ai.util.Direction;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -42,11 +42,11 @@ public class RectangularMazeRenderer extends MazeRenderer<RectangularMazeModel> 
 	}
 
 	private void drawCell(Graphics2D g, int x, int y) {
-		if (model.getCell(x, y).hasWall(CardinalDirection.NORTH)) {
+		if (model.getCell(x, y).hasWall(Direction.NORTH)) {
 			g.drawLine(x * CELL_WIDTH, (y + 1) * CELL_HEIGHT, (x + 1) * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
 
-		if (model.getCell(x, y).hasWall(CardinalDirection.WEST)) {
+		if (model.getCell(x, y).hasWall(Direction.WEST)) {
 			g.drawLine(x * CELL_WIDTH, y * CELL_HEIGHT, x * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
 
