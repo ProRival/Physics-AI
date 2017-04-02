@@ -48,7 +48,6 @@ public class RectangularMazeModel extends CartesianMazeModel {
 	public void generate() {
 		if (isGenerated) return;
 		CartesianCell startCell = getCell(RANDOM.nextInt(width), RANDOM.nextInt(height));
-		System.out.println(startCell.getLocation());
 		mark(startCell);
 		while (!frontier.isEmpty()) {
 			CartesianCell frontierCell = frontier.get(RANDOM.nextInt(frontier.size()));
