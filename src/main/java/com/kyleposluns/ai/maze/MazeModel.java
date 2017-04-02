@@ -7,6 +7,4 @@ public interface MazeModel {
 
 	void generate();
 
-	MazeType getType();
-
 }

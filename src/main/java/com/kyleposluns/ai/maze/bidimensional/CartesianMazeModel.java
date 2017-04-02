@@ -1,7 +1,6 @@
 package com.kyleposluns.ai.maze.bidimensional;
 
 import com.kyleposluns.ai.maze.bidimensional.impl.CartesianCell;
-import com.kyleposluns.ai.util.CardinalDirection;
 import com.kyleposluns.ai.util.Location;
 
 public abstract class CartesianMazeModel implements MazeModel2D {
@@ -33,14 +32,6 @@ public abstract class CartesianMazeModel implements MazeModel2D {
 
 	public int getColumns() {
 		return this.height;
-	}
-
-	public CartesianCell getRelative(CartesianCell cell, CardinalDirection direction) {
-		try {
-			return maze[cell.getLocation().x + direction.getDeltaX()][cell.getLocation().y + direction.getDeltaY()];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return null;
-		}
 	}
 
 	public abstract CartesianCell getCell(int x, int y);
