@@ -13,6 +13,7 @@ public class RendererManager {
 	}
 
 	public void registerRenderer(MazeRenderer renderer) {
+		renderers.removeIf(r -> renderer.getType().equals(r.getType()));
 		this.renderers.add(renderer);
 	}
 
@@ -22,7 +23,7 @@ public class RendererManager {
 
 	public <T extends MazeRenderer> T getRenderer(Class<T> rendererClazz) {
 		for (MazeRenderer renderer : this.renderers) {
-			if (rendererClazz.isAssignableFrom(rendererClazz.getClass())) {
+			if (rendererClazz.isAssignableFrom(renderer.getClass())) {
 				return (T) renderer;
 			}
 		}

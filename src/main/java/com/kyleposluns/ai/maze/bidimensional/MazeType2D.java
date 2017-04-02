@@ -13,8 +13,10 @@ public enum MazeType2D implements MazeType {
 	MazeType2D(Class<? extends Maze> clazz) {
 		this.clazz = clazz;
 	}
+
 	@Override
 	public Class<? extends Maze> getMazeClass() {
 		return this.clazz;
 	}
+
 }
