@@ -1,6 +1,7 @@
 package com.kyleposluns.ai.maze.render;
 
 import com.kyleposluns.ai.maze.MazeModel;
+import com.kyleposluns.ai.maze.MazeType;
 import java.awt.Dimension;
 import javax.swing.JComponent;
 
@@ -18,4 +19,5 @@ public abstract class MazeRenderer<T extends MazeModel> extends JComponent{
 		this.setPreferredSize(new Dimension(width, height));
 	}
 
+	public abstract MazeType getType();
 }

@@ -1,6 +1,8 @@
 package com.kyleposluns.ai.maze.bidimensional.impl.rectangular;
 
+import com.kyleposluns.ai.maze.MazeType;
 import com.kyleposluns.ai.maze.bidimensional.CartesianMazeModel;
+import com.kyleposluns.ai.maze.bidimensional.MazeType2D;
 import com.kyleposluns.ai.maze.bidimensional.impl.CartesianCell;
 import com.kyleposluns.ai.util.Location;
 import java.util.ArrayList;
@@ -53,6 +55,11 @@ public class RectangularMazeModel extends CartesianMazeModel {
 			frontier.removeIf(CartesianCell::isVisited);
 		}
 
+	}
+
+	@Override
+	public MazeType getType() {
+		return MazeType2D.RECTANGULAR;
 	}
 
 

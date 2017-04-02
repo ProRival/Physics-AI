@@ -1,5 +1,7 @@
 package com.kyleposluns.ai.maze.bidimensional.impl.rectangular;
 
+import com.kyleposluns.ai.maze.MazeType;
+import com.kyleposluns.ai.maze.bidimensional.MazeType2D;
 import com.kyleposluns.ai.maze.render.MazeRenderer;
 import com.kyleposluns.ai.util.Direction;
 import java.awt.Color;
@@ -10,15 +12,17 @@ import javax.swing.BorderFactory;
 
 public class RectangularMazeRenderer extends MazeRenderer<RectangularMazeModel> {
 
-
-
 	private int CELL_WIDTH, CELL_HEIGHT;
 
 	public RectangularMazeRenderer(RectangularMazeModel model, int width, int height) {
 		super(model, width, height);
 		this.setSize(new Dimension(width, height));
-		//this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
 		init();
+	}
+
+	@Override
+	public MazeType getType() {
+		return MazeType2D.RECTANGULAR;
 	}
 
 	private final void init() {

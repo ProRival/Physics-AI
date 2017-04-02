@@ -1,5 +1,6 @@
 package com.kyleposluns.ai.maze.render;
 
+import com.kyleposluns.ai.maze.MazeType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -16,15 +17,23 @@ public class RendererManager {
 		this.renderers.add(renderer);
 	}
 
-
 	public Collection<MazeRenderer> getRenderers() {
 		return new ArrayList<>(this.renderers);
 	}
 
-	public <T extends MazeRenderer> MazeRenderer getRenderer(Class<T> rendererClazz) {
+	public <T extends MazeRenderer> T getRenderer(Class<T> rendererClazz) {
 		for (MazeRenderer renderer : this.renderers) {
 			if (rendererClazz.isAssignableFrom(rendererClazz.getClass())) {
 				return (T) renderer;
+			}
+		}
+		return null;
+	}
+
+	public MazeRenderer getRenderer(MazeType type) {
+		for (MazeRenderer renderer : this.renderers) {
+			if (renderer.getType().equals(type)) {
+				return renderer;
 			}
 		}
 		return null;
