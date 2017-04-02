@@ -1,11 +1,15 @@
 package com.kyleposluns.ai;
 
 
-import com.kyleposluns.ai.maze.bidimensional.impl.RectangularMaze;
-import com.kyleposluns.ai.maze.bidimensional.impl.RectangularMazeRenderer;
+import com.kyleposluns.ai.maze.bidimensional.impl.rectangular.RectangularMazeModel;
+import com.kyleposluns.ai.maze.bidimensional.impl.rectangular.RectangularMazeRenderer;
 import com.kyleposluns.ai.maze.render.MazeRenderer;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 
 public class PhysicsAI {
@@ -15,15 +19,24 @@ public class PhysicsAI {
 		JFrame f = new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		RectangularMaze maze = new RectangularMaze(25, 25);
+		RectangularMazeModel maze = new RectangularMazeModel(50, 50);
 		maze.generate();
-		MazeRenderer<RectangularMaze> renderer = new RectangularMazeRenderer(maze, 500, 500);
+		MazeRenderer<RectangularMazeModel> renderer = new RectangularMazeRenderer(maze, 500, 500);
 
-		f.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER));
+		renderer.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				super.componentResized(e);
+				renderer.setSize(e.getComponent().getSize());
+			}
+		});
 
-		f.getContentPane().add(renderer);
-		f.pack();
+		f.getContentPane().setLayout(new BorderLayout());
 		f.setVisible(true);
+
+		f.getContentPane().add(renderer, BorderLayout.CENTER);
+		f.setResizable(true);
+		f.pack();
 
 	}
 
