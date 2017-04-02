@@ -2,13 +2,12 @@ package com.kyleposluns.ai.maze.bidimensional.impl.rectangular;
 
 import com.kyleposluns.ai.maze.MazeType;
 import com.kyleposluns.ai.maze.bidimensional.MazeType2D;
-import com.kyleposluns.ai.maze.render.MazeRenderer;
+import com.kyleposluns.ai.maze.MazeRenderer;
 import com.kyleposluns.ai.util.Direction;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.BorderFactory;
 
 public class RectangularMazeRenderer extends MazeRenderer<RectangularMazeModel> {
 
