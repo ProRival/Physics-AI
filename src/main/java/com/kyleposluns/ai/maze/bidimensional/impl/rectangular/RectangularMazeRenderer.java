@@ -1,8 +1,5 @@
 package com.kyleposluns.ai.maze.bidimensional.impl.rectangular;
 
-import com.kyleposluns.ai.maze.MazeType;
-import com.kyleposluns.ai.maze.bidimensional.MazeType2D;
-import com.kyleposluns.ai.maze.bidimensional.impl.rectangular.RectangularMazeModel;
 import com.kyleposluns.ai.maze.render.MazeRenderer;
 import com.kyleposluns.ai.util.CardinalDirection;
 import java.awt.Color;
@@ -18,11 +15,6 @@ public class RectangularMazeRenderer extends MazeRenderer<RectangularMazeModel> 
 		super(model, width, height);
 		init();
 		this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
-	}
-
-	@Override
-	public MazeType getType() {
-		return MazeType2D.RECTANGULAR;
 	}
 
 	private final void init() {
