@@ -3,32 +3,39 @@ package com.kyleposluns.ai.maze.bidimensional.impl.rectangular;
 import com.kyleposluns.ai.maze.render.MazeRenderer;
 import com.kyleposluns.ai.util.Direction;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.BorderFactory;
 
 public class RectangularMazeRenderer extends MazeRenderer<RectangularMazeModel> {
 
+
+
 	private int CELL_WIDTH, CELL_HEIGHT;
 
 	public RectangularMazeRenderer(RectangularMazeModel model, int width, int height) {
 		super(model, width, height);
-		init();
+		this.setSize(new Dimension(width, height));
 		this.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+		init();
 	}
 
 	private final void init() {
-		this.CELL_WIDTH = (((int) (this.getPreferredSize().getWidth())) / model.getRows());
-		this.CELL_HEIGHT = (((int) (this.getPreferredSize().getHeight())) / model.getColumns());
+		this.CELL_WIDTH = (getWidth() / model.getRows());
+		this.CELL_HEIGHT = (getHeight() / model.getColumns());
 	}
+
 
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
+		init();
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.BLACK);
+
 
 		for (int x = 0; x < model.getRows(); x++) {
 			for (int y = 0; y < model.getColumns(); y++) {

@@ -5,8 +5,8 @@ import com.kyleposluns.ai.util.Location;
 
 public class SquareMazeModel extends RectangularMazeModel {
 
-	public SquareMazeModel(Location start, Location goal, int n) {
-		super(start, n, n);
+	public SquareMazeModel(int n) {
+		super(n, n);
 	}
 
 }

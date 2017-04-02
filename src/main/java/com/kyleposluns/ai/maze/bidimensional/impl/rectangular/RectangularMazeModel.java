@@ -13,11 +13,7 @@ public class RectangularMazeModel extends CartesianMazeModel {
 	private List<CartesianCell> frontier;
 
 	public RectangularMazeModel(int width, int height) {
-		this(new Location(RANDOM.nextInt(width), RANDOM.nextInt(height)), width, height);
-	}
-
-	public RectangularMazeModel(Location start, int width, int height) {
-		super(start, width, height);
+		super(width, height);
 		init();
 	}
 
