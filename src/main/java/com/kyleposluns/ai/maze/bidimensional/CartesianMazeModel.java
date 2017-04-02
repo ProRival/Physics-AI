@@ -2,8 +2,11 @@ package com.kyleposluns.ai.maze.bidimensional;
 
 import com.kyleposluns.ai.maze.bidimensional.impl.CartesianCell;
 import com.kyleposluns.ai.util.Location;
+import java.util.Random;
 
 public abstract class CartesianMazeModel implements MazeModel2D {
+
+	protected static final Random RANDOM = new Random();
 
 	protected int width, height;
 
@@ -11,19 +14,14 @@ public abstract class CartesianMazeModel implements MazeModel2D {
 
 	protected CartesianCell[][] maze;
 
-	protected Location start, goal;
+	protected Location start;
 
-	public CartesianMazeModel(Location start, Location goal, int width, int height) {
+	public CartesianMazeModel(Location start, int width, int height) {
 		this.start = start;
-		this.goal = goal;
 		this.width = width;
 		this.height = height;
 		this.isGenerated = false;
 		this.maze = new CartesianCell[width][height];
-	}
-
-	public CartesianMazeModel(int width, int height) {
-		this(new Location(), new Location(width - 1, height - 1), width, height);
 	}
 
 	public int getRows() {
