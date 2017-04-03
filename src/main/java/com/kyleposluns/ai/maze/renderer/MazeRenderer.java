@@ -1,13 +1,19 @@
 package com.kyleposluns.ai.maze.renderer;
 
 import com.kyleposluns.ai.maze.Maze;
-import java.awt.Graphics;
 
-/**
- * Created by Kyle on 4/2/17.
- */
-public interface MazeRenderer<T extends Maze> {
+import java.awt.Dimension;
+import javax.swing.JComponent;
 
-	void render(T maze, Graphics g);
+public abstract class MazeRenderer<T extends Maze> extends JComponent {
+
+	protected T maze;
+
+	public MazeRenderer(T maze, int width, int height) {
+		this.maze = maze;
+		this.setPreferredSize(new Dimension(width, height));
+		this.setSize(new Dimension(width, height));
+	}
+
 
 }
