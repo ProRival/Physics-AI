@@ -2,8 +2,8 @@ package com.kyleposluns.ai.maze.generator;
 
 import com.kyleposluns.ai.maze.Maze;
 
-public interface MazeGenerator {
+public interface MazeGenerator<T extends Maze> {
 
-	Maze generate();
+	T generate();
 
 }
