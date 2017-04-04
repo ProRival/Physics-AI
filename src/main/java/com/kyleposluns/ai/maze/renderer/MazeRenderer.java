@@ -15,5 +15,12 @@ public abstract class MazeRenderer<T extends Maze> extends JComponent {
 		this.setSize(new Dimension(width, height));
 	}
 
+	protected abstract void init();
+
+	public void setMaze(T maze) {
+		this.maze = maze;
+		init();
+		super.repaint();
+	}
 
 }

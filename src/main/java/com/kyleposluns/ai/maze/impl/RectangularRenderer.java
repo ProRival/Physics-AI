@@ -14,7 +14,8 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 		super(maze, width, height);
 	}
 
-	private final void init() {
+	@Override
+	protected void init() {
 		this.CELL_WIDTH = (getWidth() / maze.getRows());
 		this.CELL_HEIGHT = (getHeight() / maze.getColumns());
 	}
