@@ -46,8 +46,6 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 	}
 
 	private void drawCell(Graphics2D g, int x, int y) {
-		if (maze.access(new Location(x, y)) == null) return;
-
 		if (maze.access(new Location(x, y)).hasWall(Direction.NORTH)) {
 			g.drawLine(x * CELL_WIDTH, (y + 1) * CELL_HEIGHT, (x + 1) * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}

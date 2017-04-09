@@ -1,8 +1,10 @@
 package com.kyleposluns.ai.maze.generator;
 
-public interface MazeGenerator {
+import com.kyleposluns.ai.maze.Maze;
 
-	void generate();
+public interface MazeGenerator<T extends Maze> {
+
+	T generate();
 
 	boolean isGenerated();
 

@@ -3,6 +3,7 @@ package com.kyleposluns.ai.maze.impl;
 import com.kyleposluns.ai.maze.generator.MazeGenerator;
 import com.kyleposluns.ai.util.Location;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -55,18 +56,20 @@ public class RectangularMazeGenerator implements MazeGenerator {
 	}
 
 	@Override
-	public void generate() {
-		if (generated) return;
-		RectangularCell startCell = maze[RANDOM.nextInt(width)][RANDOM.nextInt(height)];
-		mark(startCell);
-		while (!frontier.isEmpty()) {
-			RectangularCell frontierCell = frontier.get(RANDOM.nextInt(frontier.size()));
-			RectangularCell neighbor = getRandomNeighbor(frontierCell);
-			frontierCell.connect(neighbor);
-			mark(frontierCell);
-			frontier.removeIf(RectangularCell::isVisited);
+	public RectangularMaze generate() {
+		if (!generated) {
+			RectangularCell startCell = maze[RANDOM.nextInt(width)][RANDOM.nextInt(height)];
+			mark(startCell);
+			while (!frontier.isEmpty()) {
+				RectangularCell frontierCell = frontier.get(RANDOM.nextInt(frontier.size()));
+				RectangularCell neighbor = getRandomNeighbor(frontierCell);
+				frontierCell.connect(neighbor);
+				mark(frontierCell);
+				frontier.removeIf(RectangularCell::isVisited);
+			}
+			this.generated = true;
 		}
-		this.generated = true;
+		return new RectangularMaze(width, height, location -> maze[location.x][location.y]);
 	}
 
 	@Override

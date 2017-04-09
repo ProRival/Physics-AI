@@ -4,28 +4,30 @@ import com.kyleposluns.ai.maze.CellAccessor;
 import com.kyleposluns.ai.maze.Maze;
 import com.kyleposluns.ai.util.Location;
 
-public class RectangularMaze implements Maze, CellAccessor<RectangularCell> {
+public class RectangularMaze implements Maze {
 
-	private RectangularMazeGenerator generator;
+	private final int rows, columns;
 
-	public RectangularMaze(RectangularMazeGenerator generator) {
-		this.generator = generator;
-		if (!generator.isGenerated()) {
-			generator.generate();
-		}
+	private final CellAccessor<RectangularCell> accessor;
+
+	public RectangularMaze(int rows, int columns, CellAccessor<RectangularCell> accessor) {
+		this.rows = rows;
+		this.columns = columns;
+		this.accessor = accessor;
+
 	}
 
 	public int getRows() {
-		return generator.width;
+		return this.rows;
 	}
 
 	public int getColumns() {
-		return generator.height;
+		return this.columns;
 	}
 
-	@Override
-	public RectangularCell access(Location location) {
-		return generator.getCell(location.x, location.y);
+
+	public CellAccessor<RectangularCell> getAccessor() {
+		return this.accessor;
 	}
 
 }
