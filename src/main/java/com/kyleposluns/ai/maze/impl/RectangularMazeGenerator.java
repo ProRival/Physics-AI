@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class RectangularMazeGenerator implements MazeGenerator<RectangularMaze> {
+public class RectangularMazeGenerator implements MazeGenerator {
 
 	private static final Random RANDOM = new Random();
 
@@ -17,21 +17,27 @@ public class RectangularMazeGenerator implements MazeGenerator<RectangularMaze> 
 
 	protected RectangularCell[][] maze;
 
+	private boolean generated;
+
 	public RectangularMazeGenerator(int width, int height) {
 		this.width = width;
 		this.height = height;
-		init();
-	}
-
-	private final void init() {
+		this.generated = false;
 		this.maze = new RectangularCell[width][height];
 		this.frontier = new ArrayList<>();
 		for (int x = 0; x < maze.length; x++) {
-			for (int y = 0; y < maze.length; y++) {
+			for (int y = 0; y < maze[x].length; y++) {
 				maze[x][y] = new RectangularCell(maze, new Location(x, y));
 			}
 		}
+	}
 
+	protected RectangularCell getCell(int x, int y) {
+		try {
+			return maze[x][y];
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	private final void mark(RectangularCell cell) {
@@ -48,12 +54,9 @@ public class RectangularMazeGenerator implements MazeGenerator<RectangularMaze> 
 		return neighbors.get(RANDOM.nextInt(neighbors.size()));
 	}
 
-	public void recalc() {
-		init();
-	}
-
 	@Override
-	public RectangularMaze generate() {
+	public void generate() {
+		if (generated) return;
 		RectangularCell startCell = maze[RANDOM.nextInt(width)][RANDOM.nextInt(height)];
 		mark(startCell);
 		while (!frontier.isEmpty()) {
@@ -63,6 +66,11 @@ public class RectangularMazeGenerator implements MazeGenerator<RectangularMaze> 
 			mark(frontierCell);
 			frontier.removeIf(RectangularCell::isVisited);
 		}
-		return new RectangularMaze(this);
+		this.generated = true;
+	}
+
+	@Override
+	public boolean isGenerated() {
+		return this.generated;
 	}
 }

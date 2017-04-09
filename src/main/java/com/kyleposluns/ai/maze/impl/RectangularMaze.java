@@ -1,17 +1,18 @@
 package com.kyleposluns.ai.maze.impl;
 
+import com.kyleposluns.ai.maze.CellAccessor;
 import com.kyleposluns.ai.maze.Maze;
+import com.kyleposluns.ai.util.Location;
 
-public class RectangularMaze implements Maze {
+public class RectangularMaze implements Maze, CellAccessor<RectangularCell> {
 
 	private RectangularMazeGenerator generator;
 
 	public RectangularMaze(RectangularMazeGenerator generator) {
 		this.generator = generator;
-	}
-
-	public RectangularCell getCell(int x, int y) {
-		return generator.maze[x][y];
+		if (!generator.isGenerated()) {
+			generator.generate();
+		}
 	}
 
 	public int getRows() {
@@ -20,6 +21,11 @@ public class RectangularMaze implements Maze {
 
 	public int getColumns() {
 		return generator.height;
+	}
+
+	@Override
+	public RectangularCell access(Location location) {
+		return generator.getCell(location.x, location.y);
 	}
 
 }

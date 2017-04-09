@@ -2,6 +2,7 @@ package com.kyleposluns.ai.maze.impl;
 
 import com.kyleposluns.ai.maze.renderer.MazeRenderer;
 import com.kyleposluns.ai.util.Direction;
+import com.kyleposluns.ai.util.Location;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,12 +11,13 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 
 	private int CELL_WIDTH, CELL_HEIGHT;
 
-	public RectangularRenderer(RectangularMaze maze, int width, int height) {
-		super(maze, width, height);
+	public RectangularRenderer(RectangularMaze maze) {
+		super(maze);
+		init();
 	}
 
 	@Override
-	protected void init() {
+	public void init() {
 		this.CELL_WIDTH = (getWidth() / maze.getRows());
 		this.CELL_HEIGHT = (getHeight() / maze.getColumns());
 	}
@@ -23,7 +25,6 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
-		init();
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -45,11 +46,13 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 	}
 
 	private void drawCell(Graphics2D g, int x, int y) {
-		if (maze.getCell(x, y).hasWall(Direction.NORTH)) {
+		if (maze.access(new Location(x, y)) == null) return;
+
+		if (maze.access(new Location(x, y)).hasWall(Direction.NORTH)) {
 			g.drawLine(x * CELL_WIDTH, (y + 1) * CELL_HEIGHT, (x + 1) * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
 
-		if (maze.getCell(x, y).hasWall(Direction.WEST)) {
+		if (maze.access(new Location(x, y)).hasWall(Direction.WEST)) {
 			g.drawLine(x * CELL_WIDTH, y * CELL_HEIGHT, x * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
 

@@ -2,25 +2,23 @@ package com.kyleposluns.ai.maze.renderer;
 
 import com.kyleposluns.ai.maze.Maze;
 
-import java.awt.Dimension;
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 
-public abstract class MazeRenderer<T extends Maze> extends JComponent {
+public abstract class MazeRenderer<T extends Maze> extends JPanel {
 
 	protected T maze;
 
-	public MazeRenderer(T maze, int width, int height) {
+	public MazeRenderer(T maze) {
 		this.maze = maze;
-		this.setPreferredSize(new Dimension(width, height));
-		this.setSize(new Dimension(width, height));
+		init();
 	}
 
-	protected abstract void init();
+	public abstract void init();
 
 	public void setMaze(T maze) {
 		this.maze = maze;
-		init();
-		super.repaint();
+		repaint();
 	}
+
 
 }
