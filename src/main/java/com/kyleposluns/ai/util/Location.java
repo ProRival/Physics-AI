@@ -13,6 +13,14 @@ public class Location {
 		this(0, 0);
 	}
 
+	public double distance(Location location) {
+		return Math.sqrt(distanceSquared(location));
+	}
+
+	public double distanceSquared(Location location) {
+		return Math.pow(location.x - x, 2) + Math.pow(location.y - 1, 2);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this) return true;

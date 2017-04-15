@@ -69,11 +69,7 @@ public class RectangularMazeGenerator implements MazeGenerator {
 			}
 			this.generated = true;
 		}
-		return new RectangularMaze(width, height, location -> maze[location.x][location.y]);
+		return new RectangularMaze(new Location(0, 0), new Location(width - 1, height - 1), width, height, location -> getCell(location.x, location.y));
 	}
 
-	@Override
-	public boolean isGenerated() {
-		return this.generated;
-	}
 }

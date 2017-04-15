@@ -6,6 +6,4 @@ public interface MazeGenerator<T extends Maze> {
 
 	T generate();
 
-	boolean isGenerated();
-
 }

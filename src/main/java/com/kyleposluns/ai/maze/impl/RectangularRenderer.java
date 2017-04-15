@@ -25,6 +25,7 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
+		init();
 		Graphics2D g = (Graphics2D) graphics;
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -37,7 +38,6 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 
 		for (int x = 0; x < maze.getRows(); x++) {
 			for (int y = 0; y < maze.getColumns(); y++) {
-
 				g.setColor(Color.BLACK);
 				drawCell(g, x, y);
 			}
@@ -46,14 +46,13 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 	}
 
 	private void drawCell(Graphics2D g, int x, int y) {
-		if (maze.access(new Location(x, y)).hasWall(Direction.NORTH)) {
+		if (maze.getAccessor().access(new Location(x, y)).hasWall(Direction.NORTH)) {
 			g.drawLine(x * CELL_WIDTH, (y + 1) * CELL_HEIGHT, (x + 1) * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
 
-		if (maze.access(new Location(x, y)).hasWall(Direction.WEST)) {
+		if (maze.getAccessor().access(new Location(x, y)).hasWall(Direction.WEST)) {
 			g.drawLine(x * CELL_WIDTH, y * CELL_HEIGHT, x * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
-
 	}
 
 }
