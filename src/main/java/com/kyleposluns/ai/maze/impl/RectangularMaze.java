@@ -2,14 +2,8 @@ package com.kyleposluns.ai.maze.impl;
 
 import com.kyleposluns.ai.maze.CellAccessor;
 import com.kyleposluns.ai.maze.Maze;
-import com.kyleposluns.ai.maze.solver.Node;
-import com.kyleposluns.ai.maze.solver.NodeGraph;
 import com.kyleposluns.ai.maze.solver.PathFinder;
 import com.kyleposluns.ai.util.Location;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RectangularMaze implements Maze<RectangularCell> {
 
@@ -51,7 +45,6 @@ public class RectangularMaze implements Maze<RectangularCell> {
 
 	@Override
 	public PathFinder<RectangularCell> getPathFinder() {
-		Map<RectangularCell, Map<RectangularCell, Float>> heuristic = new HashMap<>();
 
 		return null;
 	}
