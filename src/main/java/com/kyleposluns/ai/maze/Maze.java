@@ -9,5 +9,6 @@ public interface Maze<T extends MazeCell> extends MazeSolver<T> {
 
 	Location getFinish();
 
+	CellAccessor<T> getAccessor();
 
 }
