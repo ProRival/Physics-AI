@@ -2,8 +2,9 @@ package com.kyleposluns.ai.maze.solver;
 
 import java.util.Map;
 
-public interface Node {
+public interface GraphBuilder {
 
-	Map<Node, Double> getConnections();
+	Map<Node, Double> build();
+
 
 }

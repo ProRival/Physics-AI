@@ -1,6 +1,5 @@
 package com.kyleposluns.ai.maze.ui;
 
-import com.kyleposluns.ai.maze.MazeCell;
 import com.kyleposluns.ai.maze.impl.RectangularCell;
 import com.kyleposluns.ai.maze.impl.RectangularMaze;
 import com.kyleposluns.ai.maze.impl.RectangularMazeGenerator;
@@ -50,10 +49,6 @@ public class MazeUI {
 		f.setVisible(true);
 
 		f.pack();
-
-		for (RectangularCell cell : maze.getPathFinder().getPath(maze.getAccessor().access(maze.getStart()), maze.getAccessor().access(maze.getFinish()))) {
-			System.out.println(cell.getLocation());
-		}
 
 	}
 

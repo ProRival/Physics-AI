@@ -2,8 +2,12 @@ package com.kyleposluns.ai.maze.impl;
 
 import com.kyleposluns.ai.maze.CellAccessor;
 import com.kyleposluns.ai.maze.Maze;
-import com.kyleposluns.ai.maze.solver.PathFinder;
+import com.kyleposluns.ai.maze.solver.Node;
 import com.kyleposluns.ai.util.Location;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RectangularMaze implements Maze<RectangularCell> {
 
@@ -29,6 +33,7 @@ public class RectangularMaze implements Maze<RectangularCell> {
 		return this.columns;
 	}
 
+	@Override
 	public CellAccessor<RectangularCell> getAccessor() {
 		return this.accessor;
 	}
@@ -43,9 +48,14 @@ public class RectangularMaze implements Maze<RectangularCell> {
 		return this.finish;
 	}
 
-	@Override
-	public PathFinder<RectangularCell> getPathFinder() {
 
-		return null;
+	@Override
+	public List<RectangularCell> solve(RectangularCell origin, RectangularCell destination) {
+
+
+
+
+		return new ArrayList<>();
 	}
+
 }

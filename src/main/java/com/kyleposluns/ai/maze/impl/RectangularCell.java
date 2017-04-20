@@ -23,6 +23,7 @@ public class RectangularCell implements MazeCell {
 		this.walls = new boolean[]{true, true, true, true};
 	}
 
+	@Override
 	public Location getLocation() {
 		return this.location;
 	}
@@ -31,6 +32,7 @@ public class RectangularCell implements MazeCell {
 		this.walls[direction.ordinal()] = false;
 	}
 
+	@Override
 	public boolean hasWall(Direction direction) {
 		return walls[direction.ordinal()];
 	}
@@ -76,4 +78,5 @@ public class RectangularCell implements MazeCell {
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
+
 }
