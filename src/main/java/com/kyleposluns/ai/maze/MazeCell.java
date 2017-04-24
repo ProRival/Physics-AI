@@ -15,4 +15,6 @@ public interface MazeCell {
 
 	boolean hasWall(Direction dir);
 
+
+
 }

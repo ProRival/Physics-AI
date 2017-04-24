@@ -50,6 +50,10 @@ public class MazeUI {
 
 		f.pack();
 
+		for (RectangularCell cell : maze.getSolver().solve(new Location(0, 0), new Location(24, 24))) {
+			System.out.println(cell.getLocation());
+		}
+
 	}
 
 	private static RectangularMaze generate(int rows, int columns) {

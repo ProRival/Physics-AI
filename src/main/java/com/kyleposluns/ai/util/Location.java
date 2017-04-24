@@ -2,6 +2,10 @@ package com.kyleposluns.ai.util;
 
 public class Location {
 
+	public static final int MANHATTAN = 0;
+
+	public static final int EUCLIDEAN = 1;
+
 	public final int x, y;
 
 	public Location(int x, int y) {
@@ -13,13 +17,20 @@ public class Location {
 		this(0, 0);
 	}
 
-	public double distance(Location location) {
-		return Math.sqrt(distanceSquared(location));
+	public double distance(Location location, int type) {
+		switch (type) {
+			case MANHATTAN:
+				return Math.abs(location.x - this.x) + Math.abs(location.y - this.y);
+			case EUCLIDEAN:
+				return Math.sqrt(Math.pow(location.x - this.x, 2) + Math.pow(location.y - this.y, 2));
+		}
+		return 0.0;
 	}
 
-	public double distanceSquared(Location location) {
-		return Math.pow(location.x - x, 2) + Math.pow(location.y - 1, 2);
+	public double distance(Location location) {
+		return distance(location, MANHATTAN);
 	}
+
 
 	@Override
 	public boolean equals(Object o) {

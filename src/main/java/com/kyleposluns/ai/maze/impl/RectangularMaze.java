@@ -2,17 +2,18 @@ package com.kyleposluns.ai.maze.impl;
 
 import com.kyleposluns.ai.maze.CellAccessor;
 import com.kyleposluns.ai.maze.Maze;
-import com.kyleposluns.ai.maze.MazeCell;
+import com.kyleposluns.ai.maze.solver.AStarSolver;
 import com.kyleposluns.ai.maze.solver.MazeSolver;
-import com.kyleposluns.ai.maze.solver.Node;
-import com.kyleposluns.ai.util.Direction;
 import com.kyleposluns.ai.util.Location;
-import java.util.ArrayList;
-
 import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+
 public class RectangularMaze implements Maze<RectangularCell> {
+
+	private final Set<RectangularCell> cells;
 
 	private final int rows, columns;
 
@@ -28,14 +29,22 @@ public class RectangularMaze implements Maze<RectangularCell> {
 		this.rows = rows;
 		this.columns = columns;
 		this.accessor = accessor;
-		this.solver = null;
+		Set<RectangularCell> cellSet = new HashSet<>();
+		for (int x = 0; x < rows; x++) {
+			for (int y = 0; y < columns; y++) {
+				cellSet.add(accessor.access(x, y));
+			}
+		}
+		this.cells = Collections.unmodifiableSet(cellSet);
+		this.solver = new AStarSolver(this);
 	}
 
-
+	@Override
 	public int getRows() {
 		return this.rows;
 	}
 
+	@Override
 	public int getColumns() {
 		return this.columns;
 	}
@@ -60,4 +69,8 @@ public class RectangularMaze implements Maze<RectangularCell> {
 		return this.finish;
 	}
 
+	@Override
+	public Iterator<RectangularCell> iterator() {
+		return this.cells.iterator();
+	}
 }

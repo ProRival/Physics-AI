@@ -3,7 +3,7 @@ package com.kyleposluns.ai.maze;
 import com.kyleposluns.ai.maze.solver.MazeSolver;
 import com.kyleposluns.ai.util.Location;
 
-public interface Maze<T extends MazeCell> {
+public interface Maze<T extends MazeCell> extends Iterable<T> {
 
 	Location getStart();
 
@@ -13,4 +13,7 @@ public interface Maze<T extends MazeCell> {
 
 	MazeSolver<T> getSolver();
 
+	int getRows();
+
+	int getColumns();
 }
