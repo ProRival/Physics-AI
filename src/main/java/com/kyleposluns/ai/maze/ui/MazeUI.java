@@ -13,6 +13,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.function.IntConsumer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -67,22 +71,32 @@ public class MazeUI {
 		renderer.setBackground(Color.WHITE);
 		this.frame.getContentPane().add(renderer, BorderLayout.CENTER);
 
+		JLabel timeLabel = new JLabel("Solve Time: N/A");
+
 		JPanel controls = new JPanel(new GridLayout(10, 1));
 		controls.add(createSlider("Rows", 15, 50, rows -> {
 			int columns = maze.getColumns();
 			this.maze = generate(rows, columns);
 			renderer.setMaze(this.maze);
+			timeLabel.setText("Solve Time: N/A");
 		}));
 		controls.add(createSlider("Columns", 15, 50, columns -> {
 			int rows = maze.getRows();
 			this.maze = generate(rows, columns);
 			renderer.setMaze(this.maze);
+			timeLabel.setText("Solve Time: N/A");
 		}));
 
 
 		JButton solve = new JButton("Solve");
-		solve.addActionListener(e -> renderer.setSolution(maze.getSolver().solve(maze.getStart(), maze.getFinish())));
+		solve.addActionListener(e -> {
+			long start = System.currentTimeMillis();
+			renderer.setSolution(maze.getSolver().solve(maze.getStart(), maze.getFinish()));
+			long stop = System.currentTimeMillis();
+			timeLabel.setText("Solved Time: " + new SimpleDateFormat("ss.SS").format(new Date(stop - start)) + " seconds!");
+		});
 
+		controls.add(timeLabel);
 		controls.add(solve);
 		controls.setBackground(new Color(255, 255, 204));
 
