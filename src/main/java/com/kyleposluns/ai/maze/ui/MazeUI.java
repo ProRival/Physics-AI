@@ -9,13 +9,11 @@ import com.kyleposluns.ai.maze.impl.RectangularRenderer;
 import com.kyleposluns.ai.maze.solver.MazeSolver;
 import com.kyleposluns.ai.util.Location;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.util.function.Consumer;
 import java.util.function.IntConsumer;
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +31,7 @@ public class MazeUI {
 
 	private RectangularRenderer renderer;
 
-	private final BufferedImage image;
+	private final BufferedImage path;
 
 	private JFrame frame;
 
@@ -41,16 +39,15 @@ public class MazeUI {
 		this(null);
 	}
 
-	public MazeUI(BufferedImage image) {
+	public MazeUI(BufferedImage path) {
 		this.frame = new JFrame();
-		this.image = image;
+		this.path = path;
 		init();
 	}
 
 	public void setMaze(RectangularMaze maze) {
 		this.maze = maze;
 	}
-
 
 	private static RectangularMaze generate(int rows, int columns) {
 		RectangularMazeGenerator generator = new RectangularMazeGenerator(rows, columns);
@@ -62,9 +59,12 @@ public class MazeUI {
 		frame.getContentPane().setLayout(new BorderLayout());
 		frame.setPreferredSize(new Dimension((int) (DEFAULT_FRAME_DIMENSION * 1.5), DEFAULT_FRAME_DIMENSION));
 
-		this.maze = generate(DEFAULT_MAZE_DIMENSION, DEFAULT_MAZE_DIMENSION);
-		this.renderer = new RectangularRenderer(maze, image);
 
+		this.maze = generate(DEFAULT_MAZE_DIMENSION, DEFAULT_MAZE_DIMENSION);
+		this.renderer = new RectangularRenderer(maze, path);
+
+
+		renderer.setBackground(Color.WHITE);
 		this.frame.getContentPane().add(renderer, BorderLayout.CENTER);
 
 		JPanel controls = new JPanel(new GridLayout(10, 1));
@@ -84,6 +84,7 @@ public class MazeUI {
 		solve.addActionListener(e -> renderer.setSolution(maze.getSolver().solve(maze.getStart(), maze.getFinish())));
 
 		controls.add(solve);
+		controls.setBackground(new Color(255, 255, 204));
 
 		frame.add(controls, BorderLayout.EAST);
 
@@ -104,6 +105,7 @@ public class MazeUI {
 		});
 		p.add(slider, BorderLayout.CENTER);
 		p.add(value, BorderLayout.SOUTH);
+		p.setBackground(new Color(255, 182, 193));
 		return p;
 	}
 

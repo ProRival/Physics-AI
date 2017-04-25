@@ -15,12 +15,11 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 
 	private List<RectangularCell> solution;
 
-	private BufferedImage image;
+	private BufferedImage path;
 
-
-	public RectangularRenderer(RectangularMaze maze,  BufferedImage image) {
+	public RectangularRenderer(RectangularMaze maze,  BufferedImage path) {
 		this(maze);
-		this.image = image;
+		this.path = path;
 	}
 
 	public RectangularRenderer(RectangularMaze maze) {
@@ -50,8 +49,6 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 		init();
 		Graphics2D g = (Graphics2D) graphics;
 
-		g.setColor(Color.WHITE);
-		g.drawRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.BLACK);
 
 		g.drawLine(0, 0, maze.getRows() * CELL_WIDTH, 0);
@@ -71,11 +68,11 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 
 	private void drawSolution(Graphics2D g, int x, int y) {
 		if (!hasSolution() || !(solution.contains(maze.getAccessor().access(x, y)))) return;
-		if (image == null) {
+		if (path == null) {
 			g.setColor(Color.RED);
 			g.fillOval(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH / 2, CELL_HEIGHT / 2);
 		} else {
-			g.drawImage(image, x * CELL_WIDTH, y * CELL_HEIGHT, this);
+			g.drawImage(path, x * CELL_WIDTH, y * CELL_HEIGHT, this);
 		}
 	}
 
