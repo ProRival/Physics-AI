@@ -96,7 +96,7 @@ public class AStarSolver implements MazeSolver<RectangularCell> {
 			pathList.add(destination);
 		}
 		Collections.reverse(pathList);
-		return pathList;
+		return Collections.unmodifiableList(pathList);
 	}
 
 
