@@ -41,7 +41,7 @@ public class RectangularMazeGenerator implements MazeGenerator {
 		}
 	}
 
-	private final void mark(RectangularCell cell) {
+	private void mark(RectangularCell cell) {
 		cell.setVisited(true);
 		List<RectangularCell> neighbors = cell.getNeighbors();
 		neighbors.removeIf(RectangularCell::isVisited);
@@ -49,7 +49,7 @@ public class RectangularMazeGenerator implements MazeGenerator {
 		frontier.addAll(neighbors);
 	}
 
-	private final RectangularCell getRandomNeighbor(RectangularCell cell) {
+	private RectangularCell getRandomNeighbor(RectangularCell cell) {
 		List<RectangularCell> neighbors = cell.getNeighbors();
 		neighbors.removeIf(c -> !c.isVisited());
 		return neighbors.get(RANDOM.nextInt(neighbors.size()));
