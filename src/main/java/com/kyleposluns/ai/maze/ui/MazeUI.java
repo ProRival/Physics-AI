@@ -1,21 +1,13 @@
 package com.kyleposluns.ai.maze.ui;
 
-import com.kyleposluns.ai.maze.Maze;
-import com.kyleposluns.ai.maze.MazeCell;
-import com.kyleposluns.ai.maze.impl.RectangularCell;
 import com.kyleposluns.ai.maze.impl.RectangularMaze;
 import com.kyleposluns.ai.maze.impl.RectangularMazeGenerator;
 import com.kyleposluns.ai.maze.impl.RectangularRenderer;
-import com.kyleposluns.ai.maze.solver.MazeSolver;
-import com.kyleposluns.ai.util.Location;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.function.IntConsumer;
 import javax.swing.JButton;
@@ -35,17 +27,10 @@ public class MazeUI {
 
 	private RectangularRenderer renderer;
 
-	private final BufferedImage path;
-
 	private JFrame frame;
 
 	public MazeUI() {
-		this(null);
-	}
-
-	public MazeUI(BufferedImage path) {
 		this.frame = new JFrame();
-		this.path = path;
 		init();
 	}
 
@@ -65,7 +50,7 @@ public class MazeUI {
 
 
 		this.maze = generate(DEFAULT_MAZE_DIMENSION, DEFAULT_MAZE_DIMENSION);
-		this.renderer = new RectangularRenderer(maze, path);
+		this.renderer = new RectangularRenderer(maze);
 
 
 		renderer.setBackground(Color.WHITE);
@@ -74,13 +59,13 @@ public class MazeUI {
 		JLabel timeLabel = new JLabel("Solve Time: N/A");
 
 		JPanel controls = new JPanel(new GridLayout(10, 1));
-		controls.add(createSlider("Rows", 15, 50, rows -> {
+		controls.add(createSlider("Rows", 5, 50, rows -> {
 			int columns = maze.getColumns();
 			this.maze = generate(rows, columns);
 			renderer.setMaze(this.maze);
 			timeLabel.setText("Solve Time: N/A");
 		}));
-		controls.add(createSlider("Columns", 15, 50, columns -> {
+		controls.add(createSlider("Columns", 5, 50, columns -> {
 			int rows = maze.getRows();
 			this.maze = generate(rows, columns);
 			renderer.setMaze(this.maze);

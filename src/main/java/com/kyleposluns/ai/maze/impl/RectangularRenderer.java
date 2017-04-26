@@ -15,13 +15,6 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 
 	private List<RectangularCell> solution;
 
-	private BufferedImage path;
-
-	public RectangularRenderer(RectangularMaze maze,  BufferedImage path) {
-		this(maze);
-		this.path = path;
-	}
-
 	public RectangularRenderer(RectangularMaze maze) {
 		super(maze);
 		this.solution = new ArrayList<>();
@@ -68,20 +61,26 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 
 	private void drawSolution(Graphics2D g, int x, int y) {
 		if (!hasSolution() || !(solution.contains(maze.getAccessor().access(x, y)))) return;
-		if (path == null) {
-			g.setColor(Color.RED);
-			g.fillOval(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH / 2, CELL_HEIGHT / 2);
-		} else {
-			g.drawImage(path, x * CELL_WIDTH, y * CELL_HEIGHT, this);
-		}
+		g.setColor(Color.RED);
+		g.fillOval((int) ((x + .25) * CELL_WIDTH), (int) ((y + .25) * CELL_HEIGHT), CELL_WIDTH / 2, CELL_HEIGHT / 2);
 	}
+
+
 
 	private void drawCell(Graphics2D g, int x, int y) {
 		if (maze.getAccessor().access(x, y).hasWall(Direction.NORTH)) {
+			g.setColor(Color.BLACK);
+			g.drawLine(x * CELL_WIDTH, (y + 1) * CELL_HEIGHT, (x + 1) * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
+		} else {
+			g.setColor(new Color(245, 245, 245));
 			g.drawLine(x * CELL_WIDTH, (y + 1) * CELL_HEIGHT, (x + 1) * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
 
 		if (maze.getAccessor().access(x, y).hasWall(Direction.WEST)) {
+			g.setColor(Color.BLACK);
+			g.drawLine(x * CELL_WIDTH, y * CELL_HEIGHT, x * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
+		} else {
+			g.setColor(new Color(245, 245, 245));
 			g.drawLine(x * CELL_WIDTH, y * CELL_HEIGHT, x * CELL_WIDTH, (y + 1) * CELL_HEIGHT);
 		}
 	}

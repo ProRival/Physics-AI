@@ -10,17 +10,7 @@ import javax.swing.SwingUtilities;
 public class PhysicsAI {
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(() -> {
-			if (args.length != 1) throw new IllegalArgumentException();
-			File pathFile = new File(args[0]);
-			try {
-				BufferedImage path = ImageIO.read(pathFile);
-				new MazeUI(path);
-			} catch (IOException e) {
-				e.printStackTrace();
-				new MazeUI();
-			}
-		});
+		SwingUtilities.invokeLater(MazeUI::new);
 	}
 
 }
