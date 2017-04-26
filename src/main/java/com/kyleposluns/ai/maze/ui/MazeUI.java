@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.function.IntConsumer;
 import javax.swing.JButton;
@@ -63,12 +64,14 @@ public class MazeUI {
 			int columns = maze.getColumns();
 			this.maze = generate(rows, columns);
 			renderer.setMaze(this.maze);
+			renderer.setSolution(new ArrayList<>());
 			timeLabel.setText("Solve Time: N/A");
 		}));
 		controls.add(createSlider("Columns", 5, 50, columns -> {
 			int rows = maze.getRows();
 			this.maze = generate(rows, columns);
 			renderer.setMaze(this.maze);
+			renderer.setSolution(new ArrayList<>());
 			timeLabel.setText("Solve Time: N/A");
 		}));
 
@@ -81,8 +84,20 @@ public class MazeUI {
 			timeLabel.setText("Solved Time: " + new SimpleDateFormat("ss.SS").format(new Date(stop - start)) + " seconds!");
 		});
 
+		JButton step = new JButton("Step");
+		step.addActionListener(e -> {
+			if (!renderer.hasSolution()) {
+				long start = System.currentTimeMillis();
+				renderer.setSolution(maze.getSolver().solve(maze.getStart(), maze.getFinish()));
+				long stop = System.currentTimeMillis();
+				timeLabel.setText("Solved Time: " + new SimpleDateFormat("ss.SS").format(new Date(stop - start)) + " seconds!");
+			}
+			renderer.step();
+		});
+
 		controls.add(timeLabel);
 		controls.add(solve);
+		controls.add(step);
 		controls.setBackground(new Color(255, 255, 204));
 
 		frame.add(controls, BorderLayout.EAST);

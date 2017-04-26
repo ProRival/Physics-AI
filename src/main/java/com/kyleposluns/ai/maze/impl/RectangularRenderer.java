@@ -2,10 +2,10 @@ package com.kyleposluns.ai.maze.impl;
 
 import com.kyleposluns.ai.maze.renderer.MazeRenderer;
 import com.kyleposluns.ai.util.Direction;
+import com.kyleposluns.ai.util.Location;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +15,24 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 
 	private List<RectangularCell> solution;
 
+	private int current;
+
 	public RectangularRenderer(RectangularMaze maze) {
 		super(maze);
+		this.current = -1;
 		this.solution = new ArrayList<>();
 		init();
 	}
 
+	public void step() {
+		if (current >= solution.size()) return;
+		current++;
+		repaint();
+	}
+
 	public void setSolution(List<RectangularCell> solution) {
 		this.solution = solution;
+		this.current = -1;
 		repaint();
 	}
 
@@ -53,10 +63,18 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 			for (int y = 0; y < maze.getColumns(); y++) {
 				g.setColor(Color.BLACK);
 				drawCell(g, x, y);
-				drawSolution(g, x, y);
+				if (current < 0) {
+					drawSolution(g, x, y);
+				}
 			}
 		}
 
+		if (current >= 0) {
+			for (int i = 0; i < current; i++) {
+				Location location = solution.get(i).getLocation();
+				drawSolution(g, location.x, location.y);
+			}
+		}
 	}
 
 	private void drawSolution(Graphics2D g, int x, int y) {
@@ -64,7 +82,6 @@ public class RectangularRenderer extends MazeRenderer<RectangularMaze> {
 		g.setColor(Color.RED);
 		g.fillOval((int) ((x + .25) * CELL_WIDTH), (int) ((y + .25) * CELL_HEIGHT), CELL_WIDTH / 2, CELL_HEIGHT / 2);
 	}
-
 
 
 	private void drawCell(Graphics2D g, int x, int y) {
